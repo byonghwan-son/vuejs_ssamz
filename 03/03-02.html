@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-02</title>
+</head>
+<body>
+<div id="app">
+    <h2 v-text="message" />
+</div>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script type="text/javascript">
+    let model = {message: 'Hello Vue3!!'}
+    let vm = Vue.createApp({
+        name: 'App',
+        data() {
+            return model
+        },
+    }).mount('#app')
+</script>
+</body>
+</html>
+<!--v-text, {{}} : innerText-->
+<!--v-html : innerHTML-->
