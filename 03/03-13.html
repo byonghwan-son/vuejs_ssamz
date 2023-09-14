@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for 디렉티브</title>
+    <style>
+        #list { width: 600px; border: 1px solid black; border-collapse: collapse;}
+        #list td, #lit th { border: 1px solid black; text-align: center; }
+        #list > thead > tr { color: yellow; background-color: purple; }
+    </style>
+</head>
+<body>
+<div id="app">
+    <select id="regions">
+        <option disabled="disabled" selected>지역을 선택하세요</option>
+        <option v-for="(val, key) in regions" :value="key" :key="key">{{val}}</option>
+    </select>
+</div>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script type="text/javascript">
+    let vm = Vue.createApp({
+        data: () => {
+            return {
+                regions: {
+                    "A" : "Asia",
+                    "B" : "America",
+                    "C" : "Europe",
+                    "D" : "Africa",
+                    "E" : "Oceania"
+                }
+            }
+        }
+    }).mount("#app")
+</script>
+</body>
+</html>
