@@ -4,25 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>v-model의 한글처리 문제</title>
+    <title>03-09</title>
 </head>
 <body>
 <div id="app">
-    <input type="text" id="a" :value="name" @input="changeName" ><br/>
-    입력하신 이름 : <span>{{ name }}</span>
+    잔고 : <input type="text" v-model="balance"><br/>
+    회원님의 등급 :
+    <span v-if="balance >= 1000000">GOLD</span>
+    <span v-else-if="balance >= 500000">SILVER</span>
+    <span v-else-if="balance >= 200000">BRONZE</span>
+    <span v-else>BASIC</span>
 </div>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script type="text/javascript">
     let vm = Vue.createApp({
-        name: "App",
         data: () => {
             return {
-                name: ''
-            }
-        },
-        methods: {
-            changeName(e) {
-                this.name = e.target.value
+                balance: ""
             }
         }
     }).mount("#app")
