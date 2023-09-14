@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-model의 한글처리 문제</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" id="a" :value="name" @input="changeName" ><br/>
+    입력하신 이름 : <span>{{ name }}</span>
+</div>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script type="text/javascript">
+    let vm = Vue.createApp({
+        name: "App",
+        data: () => {
+            return {
+                name: ''
+            }
+        },
+        methods: {
+            changeName(e) {
+                this.name = e.target.value
+            }
+        }
+    }).mount("#app")
+</script>
+</body>
+</html>
