@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-clock 디렉티브</title>
+    <style>
+        .list { width: 600px; border: 1px solid black; border-collapse: collapse;}
+        .list td, .lit th { border: 1px solid black; text-align: center; }
+        .list > thead > tr { color: yellow; background-color: purple; }
+        [v-clock] {display: none;}
+    </style>
+</head>
+<body>
+<div id="app" v-clock>
+    <table class="list">
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>전화번호</th>
+        </tr>
+        </thead>
+        <tbody id="contacts">
+        <tr v-for="contact in contacts" :key="contact.no">
+            <td>{{ contact.no }}</td>
+            <td>{{ contact.name }}</td>
+            <td>{{ contact.tel }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script type="text/javascript">
+    let model = {
+        "contacts": [
+            {"no":1011, "name":"RM", "tel":"010-3456-1234"},
+            {"no":1012, "name":"정국", "tel":"010-3456-2345"},
+            {"no":1013, "name":"제이홉", "tel":"010-3456-3456"},
+            {"no":1014, "name":"슈가", "tel":"010-3456-4567"},
+        ]
+    }
+
+    let vm = Vue.createApp({
+        data: () => {
+            return model
+        }
+    }).mount("#app")
+</script>
+</body>
+</html>
+<!--Vue 인스턴스를 컴파일 하지 않고 {{ message }} 문자열을 그대로 출력-->

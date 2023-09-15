@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-once 디렉티브</title>
+</head>
+<body>
+<div id="app">
+    <p>한 번만 렌더링 하기</p>
+    <span v-once>{{message}}</span>
+</div>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script type="text/javascript">
+    let vm = Vue.createApp({
+        name: "App",
+        data: () => {
+            return {
+                message: "Hello World!"
+            }
+        }
+    }).mount("#app")
+</script>
+</body>
+</html>
+<!--Vue 인스턴스를 컴파일 하지 않고 {{ message }} 문자열을 그대로 출력-->
