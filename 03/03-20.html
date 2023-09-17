@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동적 아규먼트(danamic argument)</title>
+</head>
+<body>
+    <div id="app">
+        <img v-bind:[image1.srcattr]="image1.src"
+            :[image1.titleattr]="image1.title"
+            :[image1.styleattr]="image1.style"
+            >
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="text/javascript">
+        let vm = Vue.createApp({
+            name: 'App',
+            data() {
+                return {
+                    image1: {
+                        srcattr:"src",
+                        src:"https://ddgimgs-f43e.kxcdn.com/146050/ckqtta_d5adaf4e5a3723148bd6412dfbc7542144c98ee9.jpg",
+                        titleattr:"title",
+                        title:"Lily's Photo",
+                        styleattr:"style",
+                        style:"width: 350px; height: 300px;"
+                    }                    
+                }
+            },
+        }).mount('#app')
+    </script>
+</body>
+</html>
