@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-04</title>
+</head>
+<body>
+<div id="app">
+    1 보다 큰수
+    <input type="text" v-model.number="amt"><br>
+    금액 : <span>{{amount}} 원</span><br>
+
+</div>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script type="text/javascript">
+    let vm = Vue.createApp({
+        name: "App",
+        data() {
+            return {
+                amt: 99999
+            }
+        },
+        computed: {
+            amount: {
+                get() {
+                    var regexp = /\B(?=(\d{3})+(?!\d))/g
+                    return this.amt.toString().replace(regexp, ',')
+                },
+                set(amount) {
+                    let amt = parseInt(amount.replace(/,/g, ""))
+                    this.amt = Number.isNaN(amt) ? 0 : amt;
+                }
+            }
+        }
+    }).mount('#app')
+</script>
+</body>
+</html>

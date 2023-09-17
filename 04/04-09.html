@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관찰 속성(Watched Property) 사용할 때 주의사항</title>
+</head>
+<body>
+<div id="app">
+    x : <input type="text" v-model.number="values.x"><br>
+    y : <input type="text" v-model.number="values.y"><br>
+    덧셈 결과 : {{ sum }}
+</div>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script type="text/javascript">
+    let vm = Vue.createApp({
+        app: "App",
+        data() {
+            return {
+                values: {x: 0, y: 0}, sum: 0
+            }
+        },
+        watch: {
+            // 아래의 메서드는 실행되지 않음.
+            /*
+            values(current ,oldValue) {
+                let result = Number(current.x) + Number(currnet.y)
+                if(isNaN(result)) this.sum = 0
+                else this.sum = result
+            }
+             */
+            // 안전한 아래의 메서드를 실행, 하지만 고비용의 작업방법
+            handler: function(current) {
+                let result = Number(current.x) + Number(current.y)
+                if(isNaN(result)) this.sum = 0
+                else this.sum = result
+            },
+            deep: true
+        }
+    }).mount("#app")
+</script>
+</body>
+</html>

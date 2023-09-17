@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관찰 속성(Watched Property) vs 계산된 속성(Computed Property)</title>
+</head>
+<body>
+<div id="app">
+    x : <input type="text" v-model.number="x"><br>
+    y : <input type="text" v-model.number="y"><br>
+    덧셈 결과 : {{ sum }}
+</div>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script type="text/javascript">
+    let vm = Vue.createApp({
+        app: "App",
+        data() {
+            return {
+                x: 0, y: 0
+            }
+        },
+        computed: {
+            sum() {
+                let result = Number(this.x) + Number(this.y)
+                if(isNaN(result)) return 0
+                else return result
+            }
+        }
+    }).mount("#app")
+</script>
+</body>
+</html>
