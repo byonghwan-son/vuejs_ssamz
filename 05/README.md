@@ -53,7 +53,7 @@ ___
 * ![](E:\dev\vuejs\vuejs_ssamz\05\img.png)
 ### 이벤트 수식어
 * once 수식어 : 한 번만 이벤트를 발생시키고 이벤트 연결을 해제
-* 키코드 관련 수식어
+* 키보드 관련 수식어
   * .up .down .left .right
   * .enter .tab .delete .esc
   * .space .ctrl .alt .shift
@@ -63,3 +63,5 @@ ___
   * @keyup.ctrl.c="..."
 * 마우스 관련 수식어
   * .left .right .middle
+* exact
+  * 단 하나의 이벤트만 실행
