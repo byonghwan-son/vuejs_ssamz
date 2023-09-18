@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exact 수식어</title>
+</head>
+<body>
+<div id="app">
+    <h2>Exact 미적용</h2>
+    <ul>
+        <li>마우스 왼쪽만 클릭 : 1씩 증가</li>
+        <li>CTRL + 왼쪽 클릭 : 10씩 증가</li>
+        <li>CTRL + ALT + 왼쪽 클릭 : 100씩 증가</li>
+    </ul>
+    <button @click="num1=num1+1" @click.ctrl="num1=num1+10" @click.ctrl.alt="num1=num1+100">클릭 하세요!!</button>
+    <br>
+    <h3>카운트 : {{num1}}</h3>
+    <hr>
+    <h2>Exact 적용</h2>
+    <ul>
+        <li>마우스 왼쪽만 클릭 : 1씩 증가</li>
+        <li>CTRL + 왼쪽 클릭 : 10씩 증가</li>
+        <li>CTRL + ALT + 왼쪽 클릭 : 100씩 증가</li>
+    </ul>
+    <button @click.exact="num2=num2+1" @click.ctrl.exact="num2=num2+10" @click.ctrl.alt.exact="num2=num2+100">
+        클릭 하세요!!</button>
+    <br>
+    <h3>카운트 : {{num2}}</h3>
+</div>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script type="text/javascript">
+    let vm = Vue.createApp({
+        name: "App",
+        data() {
+            return {
+                num1: 0,
+                num2: 0
+            }
+        }
+    }).mount('#app')
+</script>
+</body>
+</html>

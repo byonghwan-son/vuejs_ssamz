@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기본 이벤트 중지</title>
+</head>
+<body>
+<div id="app">
+    <div @contextmenu.prevent
+        style="position:absolute; top:5px; right:5px; bottom: 5px; left: 5px;">
+        <a href="https://facebook.com" @click="confirmFB">페이스북</a>
+    </div>
+</div>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script type="text/javascript">
+    let vm = Vue.createApp({
+        name: "App",
+        methods: {
+            confirmFB(e) {
+                if(!confirm('페이스북으로 이동할까요?')) {
+                    e.preventDefault()
+                }
+            }
+        }
+    }).mount("#app")
+</script>
+</body>
+</html>

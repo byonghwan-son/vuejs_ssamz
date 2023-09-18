@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model의 한글처리 문제</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" id="a" :value="name" @input="(e) => this.name = e.target.value" ><br/>
+    <input type="text" id="a" :value="name" @input="this.name = $event.target.value" ><br/>
+    입력하신 이름 : <span>{{ name }}</span>
+</div>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script type="text/javascript">
+    let vm = Vue.createApp({
+        name: "App",
+        data: () => {
+            return {
+                name: ''
+            }
+        }
+    }).mount("#app")
+</script>
+</body>
+</html>

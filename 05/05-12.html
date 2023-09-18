@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 수식어(키보드 관련)</title>
+</head>
+<body>
+<div id="app">
+    이름 : <input id="a" type="text" v-model.trim="name" placeholder="영문 두 글자 이상을 입력하세요."
+                @keyup.enter="search">
+    <br>
+    <ul>
+        <li v-for="c in contacts">{{ c.name }} : {{ c.tel }}</li>
+    </ul>
+    <div v-show="isLoading">검색중...</div>
+</div>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="https://unpkg.com/axios@1.5.0/dist/axios.min.js"></script>
+<script type="text/javascript">
+    const BASEURL = "https://contactsvc.bmaster.kro.kr"
+    let vm = Vue.createApp({
+        name: "App",
+        data() {
+            return {
+                isLoading: false,
+                name: "",
+                contacts: []
+            }
+        },
+        methods: {
+            search(e) {
+                // if (e.keyCode === 13) {
+                if (this.name.length >= 2) {
+                    this.fetchContacts()
+                } else {
+                    this.contacts = []
+                }
+                // }
+            },
+            fetchContacts() {
+                this.isLoading = true
+                axios.get(BASEURL + `/contacts_long/search/${this.name}`)
+                    .then((res) => {
+                        this.isLoading = false
+                        this.contacts = res.data
+                    })
+            }
+        }
+    }).mount('#app')
+</script>
+</body>
+</html>
