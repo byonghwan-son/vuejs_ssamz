@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>true/false 값을 가진 객체를 바인딩하는 방법</title>
+    <style>
+        .bColor {
+            background-color: aqua; color: black;
+        }
+        .bLayout {
+            text-align: center; width: 120px;
+        }
+        .bBorder {
+            border: khaki dashed 1px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <button id="btn1" class="staticBorder"
+            :class="{bColor:setColor, bLayout:setAlign, bBorder:setBorder}">테스트 버튼</button>
+    <p>
+        <input type="checkbox" v-model="setColor" value="true">색상<br/>
+        <input type="checkbox" v-model="setAlign" value="true">정렬, 크기<br/>
+        <input type="checkbox" v-model="setBorder" value="true">테두리선<br/>
+    </p>
+</div>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script type="text/javascript">
+    let vm = Vue.createApp({
+        name: "App",
+        data() {
+            return {
+                setColor: false, setAlign: false, setBorder:false
+            }
+        }
+    }).mount('#app')
+</script>
+</body>
+</html>

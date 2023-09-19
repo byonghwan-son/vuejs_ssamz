@@ -39,8 +39,8 @@ ___
 * pageX pageY
 * screenX, screenY
 #### 이벤트 객체의 주요 메서드
-* prevnetDefault() : 기본 이벤트 자동실행 금지
-* stopPropagation() : 이벤트 전파 중지
+* prevnetDefault() : 기본 이벤트 자동실행 금지 (prevent)
+* stopPropagation() : 이벤트 전파 중지 (stop)
 ### 기본 이벤트
 * HTML 문서나 요소에 어떤 기능을 실행하도록 이미 정의 되어 있는 이벤트
 * 기본 이벤트 중지 시키기 : **preventDefault()**
@@ -50,7 +50,11 @@ ___
 * ② 발생(raising)
 * ③ 버블링(bubbling)
 * 2단계, 3단계에서 연결된 이벤트 함수가 호출됨.
-* ![](img.png)
+![이벤트 전파와 버블링](img.png)
+* .stop : 이벤트 전파를 중단시킨다.
+* .capture : CAPTURE_PHASE 단계에서만 이벤트가 발생
+* .self : RAISING_PHASE 단계일 때만 이벤트가 발생
+* .prevent : 기본 이벤트 자동실행 금지
 ### 이벤트 수식어
 * once 수식어 : 한 번만 이벤트를 발생시키고 이벤트 연결을 해제
 * 키보드 관련 수식어
