@@ -65,6 +65,7 @@ export default {
 }
 ```
 * 타입으로 사용가능한 생성자 함수들
+<<<<<<< HEAD
 * String, Number, Boolean, Array
 * Object, Date, Function, Symbol
 ### 사용자 정의 이벤트
@@ -110,3 +111,7 @@ const Component = {
   ......
 }
 ```
+=======
+  * String, Number, Boolean, Array
+  * Object, Date, Function, Symbol
+>>>>>>> c9db099e98b51ac994db0304e3eeafd4b4c27ee0
