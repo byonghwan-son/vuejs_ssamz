@@ -65,9 +65,8 @@ export default {
 }
 ```
 * 타입으로 사용가능한 생성자 함수들
-<<<<<<< HEAD
-* String, Number, Boolean, Array
-* Object, Date, Function, Symbol
+  * String, Number, Boolean, Array
+  * Object, Date, Function, Symbol
 ### 사용자 정의 이벤트
 #### 사용자 정의 이벤트를 이용한 정보 전달
 * 자식 컴포넌트는 이벤트를 발산(emit events)하고 부모 컴포넌트는 자식 컴포넌트가 발신한 이벤트를 ***v-on 디렉티브***를 이용해서 수신함.
@@ -111,7 +110,7 @@ const Component = {
   ......
 }
 ```
-=======
-  * String, Number, Boolean, Array
-  * Object, Date, Function, Symbol
->>>>>>> c9db099e98b51ac994db0304e3eeafd4b4c27ee0
+### 이벤트 에미터 사용
+* 하나의 공유 이벤트를 만들어 두고 이벤트 정보가 에미터로 흘러가도록 하는 방법
+* [참조 문서](https://github.com/developit/mitt)
+* 
