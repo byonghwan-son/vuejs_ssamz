@@ -113,4 +113,4 @@ const Component = {
 ### 이벤트 에미터 사용
 * 하나의 공유 이벤트를 만들어 두고 이벤트 정보가 에미터로 흘러가도록 하는 방법
 * [참조 문서](https://github.com/developit/mitt)
-* 
+* 이벤트 수신 등록을 위해서 created() 메소드에 처리할 메소드를 this.emitter.on() 형태로 등록.
