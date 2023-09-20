@@ -64,3 +64,6 @@ export default {
   }   
 }
 ```
+* 타입으로 사용가능한 생성자 함수들
+* String, Number, Boolean, Array
+* Object, Date, Function, Symbol
