@@ -7,10 +7,10 @@ export default {
   data() {
     return {
       idols: [
-        {id: 1, name: "BTS", checked: true},
-        {id: 2, name: "Black Pink", checked: 1}, // 의도적으로 오류 발생시킴.
-        {id: 3, name: "EXO"},
-        {id: 4, name: { special: "ITZY"}}, // 의도적으로 오류 발생시킴.
+        {id: 1, name: "BTS", checked: true}, // 오류 발생
+        {id: 2, name: "Black Pink"},
+        {id: 3, name: "EXO"}, // 오류 발생
+        {id: 4, name: "ITZY"},
       ]
     }
   }
