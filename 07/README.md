@@ -67,3 +67,46 @@ export default {
 * 타입으로 사용가능한 생성자 함수들
 * String, Number, Boolean, Array
 * Object, Date, Function, Symbol
+### 사용자 정의 이벤트
+#### 사용자 정의 이벤트를 이용한 정보 전달
+* 자식 컴포넌트는 이벤트를 발산(emit events)하고 부모 컴포넌트는 자식 컴포넌트가 발신한 이벤트를 ***v-on 디렉티브***를 이용해서 수신함.
+
+* [자식 컴포넌트에서]
+```javascript
+this.$emit('event-name', eventArgs1, eventArgs2, ...)
+```
+[부모 컴포넌트에서]
+```javascript
+<child-component @event-name="handlerMethod" />
+
+mothods: {
+  handlerMethod(eventArgs1, eventArgs2, ...) {
+    // 전달받은 인자(Argument)로 처리할 코드 작성
+  }
+}
+```
+* 직계 부모에게만 적용됨
+* 계층 구조가 복잡한 경우 중간에 거쳐가는 컴포넌트에서 이벤트 정보를 받아서 해당 컴포넌트의 부모로 전달해야 함.
+#### 이벤트 유효성 검증
+```javascript
+const Component = {
+  ......
+  emits: ["이벤트명1", "이벤트명2"]
+  ......
+}
+```
+또는
+```javascript
+const Component = {
+  ......
+  emits: {
+    이벤트명1 : (e) => {
+      // true가 리턴되면 유효
+      // false가 리턴되면 유효하지 않음
+    },
+    // 유효성 검사 하지 않음
+    이벤트명2 : null
+  }
+  ......
+}
+```
