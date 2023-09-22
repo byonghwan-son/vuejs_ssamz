@@ -16,3 +16,16 @@ ___
 ```html
 <div :class="[$style.child, $style.italic]">...</div>
 ```
+### 슬롯
+* 부모 컴포넌트와 자식 컴포넌트 사이에 template을 전달할 때 사용
+```vue
+<template>
+  <div>
+    ......
+    <slot>Item</slot>
+    ......
+  </div>  
+</template>
+```
+* 명명된 슬롯 (Named Slot)
+  * 여러 개의 슬롯을 지정하고 각 슬롯에 필요한 컨텐츠를 전달하는 방법
