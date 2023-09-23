@@ -60,3 +60,29 @@ ___
 ![props와 provide, inject](./img/props.png)
 * provide, inject는 공용 데이터를 부모 컴포넌트(app)에 제공(provide)하고 하위 컴포넌트
  트리상의 어느 컴포넌트에서나 필요한 데이터를 주입(inject)하여 사용하도록 하는 방법
+* provide로 제공되는 객체는 반응성(reactivity)을 제공하지 않음.
+* 반응성 활성화 : Composition API 가 지원하는 reactive, ref, computed 를 이용
+* 반응성 제공은 일반적으로 비추천. 읽기 전용으로 사용에 권장.
+* 정말 필요하다면 Veux, Pinia를 사용
+### 텔레포트
+* 애플리케이션에서 모달, 툴팁과 같이 메인 화면과 독립적이면서 공유UI를 제공해야 할 때 사용
+* 컴포넌트 트리의 계층구조와 관계없이 별도의 요소로 렌더링함
+### 비동기 컴포넌트
+* 컴포넌트가 사용되는 시점에 관련된 .js 파일을 로딩하기
+* 프로젝트를 빌드할 때 비동기 컴포넌트를 위한 별도의 .js 파일을 분리
+* 초기 화면을 위한 컴포넌트만을 로딩하므로 화면 로딩 속도가 빨라짐
+* defineAsyncComponent 메소드를 사용.
+
+[일반적인 컴포넌트의 임포트]
+```typescript jsx
+import SyncComponent from './SyncComponent.vue
+```
+[비동기 컴포넌트의 임포트]
+```typescript jsx
+import { defineAsyncComponent } from 'vue'
+
+const AsyncComponent = defineAsyncComponent (
+    () => import('./AsyncComponent.vue')
+)
+```
+* defineAsyncComponent 메서드의 옵션 : [링크](https://vuejs.org/api/general.html#defineasynccomponent)
