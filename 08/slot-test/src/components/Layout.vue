@@ -33,10 +33,10 @@ body {
   display: grid;
   grid-gap: 5px;
   grid-template-rows: 100px 1fr 100px;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 1fr 200px;
   grid-template-areas:
     "header header"
-    "sidebar content"
+    "content sidebar"
     "footer footer";
   background-color: #ffffff;
   color: #444444;
