@@ -40,4 +40,28 @@ export default {
     * ex) x.value
 * reactive
   * 객체에 대해 반응성을 가지도록 함
-  * 
+  * setup() 옵션 메소드 내부에서 리턴할 때는 객체 내부의 값을 사용하면 안됨.
+    * ex) return { state.x, state.y } (X)
+
+### computed
+* 계산형 속성과 동일한 기능
+* computed()에 의해서 생성된 계산된 속성은 템플릿에서는 직접 이용 가능
+* ```<script>...</script>``` 내부에서 사용할 경우 ```.value```를 사용해야 함.
+
+### watch와 watchEffect
+* 옵션 API의 watch 옵션과 동일한 기능
+```javascript
+watch(data, (current, old) => {
+    // 처리하려는 연산 로직
+})
+```
+* 첫번째 인자 : 감시하려는 대상 반응성 데이터, 속성, 계산된 속성을 전달
+* 두번째 인자 : 핸들러(handler) 함수
+  * current : 변경된 값
+  * old : 변경되기 전 값
+* ref 혹은 reactive 를 이용한 데이터 객체라도 current와 old는 ```value```에 해당함.
+  * current와 old는 객체가 아닌 값이다.
+* reactive 사용시 주의사항
+  * 객체의 반응성 확인으로 인해 해당 메소드가 2번 실행함.
+  * 감시 대상을 getter() 함수로 정의하면 해결됨.
+* 다중 값에 대한 감시자 설정도 가능
