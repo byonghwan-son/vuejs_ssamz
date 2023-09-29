@@ -1,6 +1,6 @@
 <template>
   <div class="mt-5">
-    <img :src="member.photo" class="img" />
+    <img :src="member.photo" class="img"  alt="photo"/>
     <h4 class="mt-2">{{member.name}}({{member.role}})</h4>
     <p>{{member.desc}}</p>
     <a v-if="member.insta && member.insta !== ''" class="fa fa-instagram m-1" :href="member.insta"></a>
