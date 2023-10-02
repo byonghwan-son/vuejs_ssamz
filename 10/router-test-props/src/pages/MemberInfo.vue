@@ -12,15 +12,18 @@
 </template>
 
 <script>
-import {useRoute} from "vue-router"
 import members from '@/members.json'
 
 export default {
   name: "MemberInfo",
-  setup() {
-    const currentRoute = useRoute()
-    const id = parseInt(currentRoute.params.id, 10)
-    const member = members.find((m) => m.id === id)
+  props: ['id'],
+  setup(props) {
+    // const currentRoute = useRoute()
+    // const id = parseInt(currentRoute.params.id, 10)
+    // const member = members.find((m) => m.id === id)
+
+    const member = members.find((m) => m.id === parseInt(props.id, 10))
+
     return {
       member
     }

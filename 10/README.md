@@ -335,5 +335,83 @@ const router = createRouter({
 
 #### 404 라우트
 * 경로가 매칭되는 것이 없을 때 보여줄 라우트
-* 순서가 중요함. (가장 마지막 라우트도 등록해야 함.)
-* 
+* 순서가 중요함. (가장 마지막 라우트로 등록해야 함.)
+
+### 라우트 정보를 속성으로 연결하기
+* vue-router와 결합을 분리시키기 위해 라우트의 동적 파라미터, 쿼리 문자열 정보를 속성으로 전달
+* 라우트에 props:true 속성을 추가
+* 동적 파라미터가 아닌 다른 값을 속성으로 전달할 경우 props 속성에 함수를 지정함.
+```javascript
+// 요청 경로 : /boards?pageno=2
+// pageno 쿼리 문자열 값이 page 속성으로 전달됨
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [
+    ...
+    {
+      path: '/boards',
+      component: Board,
+      props: (route) => {
+        return { page: route.query.pageno }  
+      }
+    }      
+  ]
+})
+```
+
+### 지연 로딩 (Lazy Loading)
+* 컴포넌트가 이용되는 시점에 컴포넌트 및 관련된 모듈을 웹서버로 부터 로딩하는 방법
+* Webpack과 Vite의 기본설정은 단 몇개의 js파일로 빌드하고 첫 화면 로딩시에 전체 앱의 코드를 웹서버로부터 다운로드함.
+* 비동기 컴포넌트의 vue-router 버전. defineAsyncComponent() 함수를 이용하면 안됨.
+* 컴포넌트 또는 화면 단위로 분리된 .js 파일로 빌드하고 각 컴포넌트가 사용될 때 서버로부터 js파일을 다운로드함.
+* 지연 로딩을 적용하기 위해서는 import() 함수를 이용. 동적 임포트(dynamic import) 기능만을 사용함.
+```javascript
+// import About from '@/pages/About.vue'
+// 위의 주석 처리된 코드를 아래의 코드로 대체함
+const About = () => import('@/pages/About.vue')
+
+const router = createRouter({
+  // ...
+  routes: [
+    { path: '/about', name: 'about', component: About },  
+  ]
+})
+```
+
+> npm install vue-csspin
+
+* 청크 스플릿팅
+  * 각각의 컴포넌트 단위로 별도의 .js 파일을 만듦
+  * 지연 로딩을 사용하지 않으면 Rollup이라는 도구를 이용해서 하나의 js로 만드는 방법
+
+> npm install -D vite-plugin-webpackchunkname
+
+[vite.config.js 설정 추가]
+```javascript
+import { fileURLToPath, URL } from 'node:url'
+
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import { manualChunkPlugin } from 'vite-plugin-webpackchunkname'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    vue(), manualChunkPlugin
+  ],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  }
+})
+
+```
+
+### 라우팅과 인증 처리
+* 백엔드 인증 서버로 부터 응답받은 토큰은 브라우저 내의 저장송에 저장
+* 저장소 : IndexedDB, localStorage, sessionStorage
+* 요청할 때는 Authorization HTTP Header나 HTTP Cookie에 실어서 요청
+* 토큰 검증 후 유효하다면 리소스에 응답
+
+#### 내비게이션 가드를 이용한 로그인 화면 전환

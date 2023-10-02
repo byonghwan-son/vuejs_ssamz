@@ -21,10 +21,22 @@ const router = createRouter({
     routes: [
         {path: '/', name: 'home', component: Home},
         {path: '/about', name: 'about', component: About},
-        {path: '/members', name: 'members', component: Members},
+        {path: '/members', name: 'members', component: Members,
+            // 명명된 뷰에 여러 컴포넌트를 렌더링할 때
+            // 명명된 뷰마다 props 를 동적으로 전달할지 여부를 지정함.
+            // components: {
+            //     default: Members,
+            //     left: MembersLeft,
+            //     footer: MembersFooter
+            // },
+            // props: {
+            //     default: true, left: true, footer: false
+            // }
+        },
         {
             path: '/members/:id', name: 'members/id', component: MemberInfo,
-            beforeEnter: membersIdGuard // 라우트 수준 navigation
+            beforeEnter: membersIdGuard, // 라우트 수준 navigation
+            props: true
         },
         {
             path: '/videos', name: 'videos', component: Videos,
