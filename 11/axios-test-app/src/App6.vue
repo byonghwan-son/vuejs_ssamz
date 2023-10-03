@@ -3,14 +3,15 @@ import axios from "axios";
 
 const requestAPI = async () => {
   const url = "/api/todolist_long/gdhong"
-  try {
-    const response = await axios.get(url, { timeout: 900 })
-    console.log("# 응답객체 : ", response)
-  } catch(e) {
-    console.log("## 다음 오류가 발생했습니다.")
-    if (e instanceof Error) console.log(e.message)
-    else console.log(e)
-  }
+  axios
+      .get(url, { timeout: 900 })
+      .then((response) => {
+        console.log("# 응답객체 : ", response)
+      })
+      .catch((e) => {
+        if(e instanceof Error) console.log(e.message)
+        else console.log(e)
+      })
 }
 requestAPI()
 </script>

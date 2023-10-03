@@ -38,7 +38,9 @@ const addTodoHandler = () => {
     alert('할 일은 반드시 입력해야 합니다.')
     return
   }
-  addTodo({...todoItem})
-  router.push('/todos')
+  addTodo({...todoItem},
+      () => {
+        router.push('/todos')
+      })
 }
 </script>
