@@ -146,3 +146,5 @@ app.mount('#app')
   }
 </script>
 ```
+### todolist-app-router 예제에 pinia 적용하기
+![새롭게 변경할 pinia를 적용한 예제 구조](img_2.png)
