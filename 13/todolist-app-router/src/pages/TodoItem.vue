@@ -1,8 +1,8 @@
 <template>
   <li :class="todoItem.done ? 'list-group-item list-group-item-success' : 'list-group-item'">
     <span :class="todoItem.done ? 'todo-done pointer' : 'pointer'" @click="toggleDone(todoItem.id)">
-      {{todoItem.todo}}
-      {{todoItem.done ? '(완료)' : ''}}
+      {{ todoItem.todo }}
+      {{ todoItem.done ? '(완료)' : '' }}
     </span>
     <span class="float-end badge bg-secondary pointer m-1"
           @click="router.push(`/todos/edit/${todoItem.id}`)">
@@ -17,7 +17,7 @@
 
 <script setup>
 import {useRouter} from "vue-router"
-import {inject} from "vue"
+import {useTodoListStore} from "@/stores/todoList";
 
 // 변수의 타입 및 속성 고정하기
 defineProps({
@@ -25,5 +25,6 @@ defineProps({
 })
 
 const router = useRouter()
-const {deleteTodo, toggleDone} = inject('actions')
+const todoListSTore = useTodoListStore()
+const {deleteTodo, toggleDone} = todoListSTore
 </script>
